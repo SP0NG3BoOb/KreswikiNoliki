@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KreswikiNoliki">
         <activity
+            android:name=".Winner"
+            android:exported="true" />
+        <activity
             android:name=".Tictactoe"
             android:exported="true" />
         <activity

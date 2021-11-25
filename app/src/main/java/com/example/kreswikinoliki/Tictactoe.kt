@@ -1,5 +1,6 @@
 package com.example.kreswikinoliki
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -46,8 +47,6 @@ class Tictactoe : AppCompatActivity(), View.OnClickListener {
         Button9 = findViewById(R.id.Button9)
         resetButton = findViewById(R.id.resetButton)
         gameText = findViewById(R.id.gameText)
-        score1 = findViewById(R.id.score1)
-        score2 = findViewById(R.id.score2)
         Button1.setOnClickListener(this)
         Button2.setOnClickListener(this)
         Button3.setOnClickListener(this)
@@ -106,57 +105,57 @@ class Tictactoe : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun check() {
-        var winner = 0
+        var winners = 0
         var sc1 = 0
         var sc2 = 0
 
         if (firstPlayer.contains(1) && firstPlayer.contains(2) && firstPlayer.contains(3)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(1) && secPlayer.contains(2) && secPlayer.contains(3)) {
-            winner = 2
+            winners = 2
         }
         if (firstPlayer.contains(4) && firstPlayer.contains(5) && firstPlayer.contains(6)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(4) && secPlayer.contains(5) && secPlayer.contains(6)) {
-            winner = 2
+            winners = 2
         }
         if (firstPlayer.contains(7) && firstPlayer.contains(8) && firstPlayer.contains(9)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(7) && secPlayer.contains(8) && secPlayer.contains(9)) {
-            winner = 2
+            winners = 2
         }
         if (firstPlayer.contains(1) && firstPlayer.contains(4) && firstPlayer.contains(7)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(1) && secPlayer.contains(4) && secPlayer.contains(7)) {
-            winner = 2
+            winners = 2
         }
         if (firstPlayer.contains(2) && firstPlayer.contains(5) && firstPlayer.contains(8)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(2) && secPlayer.contains(5) && secPlayer.contains(8)) {
-            winner = 2
+            winners = 2
         }
         if (firstPlayer.contains(3) && firstPlayer.contains(6) && firstPlayer.contains(9)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(3) && secPlayer.contains(6) && secPlayer.contains(9)) {
-            winner = 2
+            winners = 2
         }
         if (firstPlayer.contains(1) && firstPlayer.contains(5) && firstPlayer.contains(9)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(1) && secPlayer.contains(5) && secPlayer.contains(9)) {
-            winner = 2
+            winners = 2
         }
         if (firstPlayer.contains(3) && firstPlayer.contains(5) && firstPlayer.contains(7)) {
-            winner = 1
+            winners = 1
         }
         if (secPlayer.contains(3) && secPlayer.contains(5) && secPlayer.contains(7)) {
-            winner = 2
+            winners = 2
         }
         if ((firstPlayer.contains(1) or secPlayer.contains(1)) && (firstPlayer.contains(2) or secPlayer.contains(
                 2
@@ -168,21 +167,29 @@ class Tictactoe : AppCompatActivity(), View.OnClickListener {
                 8
             )) && (firstPlayer.contains(9) or secPlayer.contains(9))
         ) {
-            winner = 3
+            winners = 3
         }
-        if (winner == 1) {
-            Toast.makeText(this, "X player won", Toast.LENGTH_SHORT).show()
-            sc1 += 1
-            score1.text = "O score: $sc1"
-            clean()
+        if (winners == 1) {
+            val playernn1 = intent?.extras?.getString("winner 1")
+            val pl1 = intent?.extras?.getString("player 1")
+            val pl2 = intent?.extras?.getString("player 2")
+            val intent1 = Intent(this, Winner::class.java)
+            intent1.putExtra("winner1", playernn1)
+            intent1.putExtra("player 1", pl1)
+            intent1.putExtra("player 2", pl2)
+            startActivity(intent1)
 
-        } else if (winner == 2) {
-            sc2 += 1
-            Toast.makeText(this, "O player won", Toast.LENGTH_SHORT).show()
-            score2.text = "O score: $sc2"
-            clean()
+        } else if (winners == 2) {
+            val playernn2 = intent?.extras?.getString("winner 2")
+            val pl1 = intent?.extras?.getString("player 1")
+            val pl2 = intent?.extras?.getString("player 2")
+            val intent = Intent(this, Winner::class.java)
+            intent.putExtra("winner2", playernn2)
+            intent.putExtra("player 1", pl1)
+            intent.putExtra("player 2", pl2)
+            startActivity(intent)
         }
-        else if (winner == 3){
+        else if (winners == 3){
             Toast.makeText(this, "It's tie", Toast.LENGTH_SHORT).show()
             clean()
         }

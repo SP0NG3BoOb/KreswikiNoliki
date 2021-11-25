@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, Tictactoe::class.java)
                 intent.putExtra("player 1", "$playern1's turn")
                 intent.putExtra("player 2", "$playern2's turn")
+                intent.putExtra("winner 1", "$playern1 won")
+                intent.putExtra("winner 2", "$playern2 won")
                 startActivity(intent)
 
             } else {
