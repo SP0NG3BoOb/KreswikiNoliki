@@ -23,11 +23,7 @@ class Winner : AppCompatActivity() {
             val pla2 = intent?.extras?.getString("pl2")
             val w1 = intent?.extras?.getString("winner1")
             val w2 = intent?.extras?.getString("winner2")
-            val intent = Intent(this, Tictactoe::class.java)
-            intent.putExtra("playerr 1", pla1)
-            intent.putExtra("playerr 2", pla2)
-            intent.putExtra("winnerr 1", w1)
-            intent.putExtra("winnerr 2", w2)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
